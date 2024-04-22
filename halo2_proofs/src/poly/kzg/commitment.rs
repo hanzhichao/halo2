@@ -15,6 +15,7 @@ use std::marker::PhantomData;
 use std::ops::{Add, AddAssign, Mul, MulAssign};
 
 use std::io;
+use halo2curves::bn256::Bn256;
 
 use super::msm::MSMKZG;
 
@@ -121,6 +122,21 @@ where
 
         let g2 = <E::G2Affine as PrimeCurveAffine>::generator();
         let s_g2 = (g2 * s).into();
+
+        println!("k={}",k);
+        println!("n={}",n);
+        println!("g");
+        for (index, value) in g.iter().enumerate() {
+            println!("index={}, value={:?}",index, value);
+        }
+
+        println!("g_lagrange");
+        for (index, value) in g_lagrange.iter().enumerate() {
+            println!("index={}, value={:?}",index, value);
+        }
+
+        println!("g2={:?}",g2);
+        println!("s_g2={:?}",s_g2);
 
         Self {
             k,
